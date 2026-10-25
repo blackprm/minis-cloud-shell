@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 mkdir -p "$ROOT/out" proj
 cd proj
 base64 -d > p.tgz <<'B64END'
-H4sIAHsk3moC/+y9e3tlVZU36t98iu2tk1DJrjWva64qwBe5NJxXkSPQavvw2DvJTlWsVJJOduoi
+H4sIAKQk3moC/+y9e3tlVZU36t98iu2tk1DJrjWva64qwBe5NJxXkSPQavvw2DvJTlWsVJJOduoi
 XefBC1AoCNooNuIr2CCor4pKy6VAnuf0N/GtJFV/8RXOGL+x5mXtvRMKPXr6vFLKrlVrjTUvY477
 HHOs/tH+0f929+DcHcPB8nDrQ3+RP5X8OejvqjI2X/N9VWmlP9Q796G/wp+d7dFgi7r/0N/mHx16
 p0erp4c3qrrRjTWqrvqV1tp5e92HPvjzv/2f1fXl4bn+ydHptb9cH8zU3toD+b92/kPKaV9brYn1
@@ -1061,6 +1061,7 @@ DDHtAYTYj/75iy9++MMvv/n5f//9P/7w1//9t7/+6Y/fff2Ln/z4Z1/+7V9//82vfvftV7/89te/
 B64END
 tar xzf p.tgz
 rm -f p.tgz
+npm i puppeteer --no-audit --no-fund 2>&1 | tail -1
 node render.js 0 1080 frames
 mkdir -p "$ROOT/out"
 ffmpeg -y -framerate 30 -i frames/f%05d.jpg -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p "$ROOT/out/nvda_v2.mp4"
