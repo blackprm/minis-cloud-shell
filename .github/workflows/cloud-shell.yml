@@ -9,6 +9,10 @@ on:
         description: artifact glob (default out/**)
         required: false
         default: out/**
+      deps:
+        description: install ffmpeg/fonts (yes|no)
+        required: false
+        default: 'yes'
 permissions:
   contents: write
 jobs:
@@ -24,6 +28,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: deps
+        if: ${{ inputs.deps != 'no' }}
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
       - name: run
         shell: bash
