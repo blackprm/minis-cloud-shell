@@ -15,6 +15,7 @@ on:
         default: 'yes'
 permissions:
   contents: write
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
