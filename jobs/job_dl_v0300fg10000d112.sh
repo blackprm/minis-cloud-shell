@@ -3,7 +3,7 @@ set +e
 mkdir -p dl
 UA="Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 VID="v0300fg10000d112f87og65pnc5i9b60"
-NAME="dy_v0300fg10000d112f87og65pnc5i9b60_1792898296.mp4"
+NAME="dy_v0300fg10000d112f87og65pnc5i9b60_1792898557.mp4"
 for R in 1080p 720p; do
   U="https://aweme.snssdk.com/aweme/v1/play/?video_id=$VID&ratio=$R&line=0"
   echo "== try $R"
