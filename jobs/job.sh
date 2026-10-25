@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
-cd "$(dirname "$0")"
-mkdir -p proj ../out
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+mkdir -p "$ROOT/out" proj
 cd proj
 base64 -d > p.tgz <<'B64END'
-H4sIALP83WoC/+09/ZcTRbb+zF9Ri/s2HUh6ujvpTjLD4BtBPt6icgSfIoenPUlnpiWTjt2d+QA5
+H4sIAH/93WoC/+09/ZcTRbb+zF9Ri/s2HUh6ujvpTjLD4BtBPt6icgSfIoenPUlnpiWTjt2d+QA5
 B0UEFB0/UBTx+bkP1BVYZZVPOef9LZPMzE/8C+/equru6k5nZnBXdt+SOjDp3Lp1q+pW1a17b92u
 yEPy0L/vNmd3WGbNch/6TZLCUr9PRSkUo2eEq4qmag+R2YfuQ2p7vulC9Q89mEkrkynfnrJG1VJF
 qxQKimbImmIUC0px3UOD9C+f7GbNmpUn/anGb1cHLmqjWOy3/lXFUB9Sdc0oFUqGVtRg/auGpj9E
@@ -155,6 +155,6 @@ export PUPPETEER_CACHE_DIR="$PWD/.pcache"
 npm init -y > /dev/null 2>&1
 npm i puppeteer --no-audit --no-fund --loglevel=error
 node render.js 0 877 frames
-ffmpeg -y -v error -framerate 30 -i frames/f%05d.jpg -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -movflags +faststart ../out/kline_replica.mp4
+ffmpeg -y -v error -framerate 30 -i frames/f%05d.jpg -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -movflags +faststart "$ROOT/out/kline_replica.mp4"
 rm -rf frames
-ls -la ../out
+ls -la "$ROOT/out"
