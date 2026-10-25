@@ -10,7 +10,7 @@ on:
         required: false
         default: out/**
 permissions:
-  contents: read
+  contents: write
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -27,6 +27,8 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
       - name: run
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -o pipefail
           echo "=== machine ==="
