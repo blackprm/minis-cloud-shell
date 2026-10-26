@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 mkdir -p "$ROOT/out" proj
 cd proj
 base64 -d > p.tgz <<'B64END'
-H4sIAIyv3moC/+1YzW8buRX3ef6KVybZzCSaGY1sWbYLbWp4jdpNsg4Su02rqsJ4hrJozwxlkrLk
+H4sIAMyv3moC/+1YzW8buRX3ef6KVybZzCSaGY1sWbYLbWp4jdpNsg4Su02rqsJ4hrJozwxlkrLk
 GO6tu2lRdNMPYNFbUbRAgT0UaC+FE6D/S7F2jvsv7CNHsj6SeLeHBNvuvIPIeeR7JN/H71H0fM//
 3oNwsEHDmIq5t0LlnN7UlsvzC+O+5gflSlCZg8HcO6CeVKHA5ee+nVRZglSxlNaD2nJluba0VFny
 gur8/PJC1Zor6P+e2lRFnRbLYhZR6XWP31b+Ly4svCn/q9WFYC6oVhZr1UptMcB5wXy5HMxB+V3m
@@ -39,6 +39,6 @@ s16STGnMl2y11h9vbrfWtj5Yb7Xq1++QAr0KKqigggoqqKCCCiqooIIKKmhMXwIMe/0KACgAAA==
 B64END
 tar xzf p.tgz
 rm -f p.tgz
-echo "打包完成，但没有指定命令"
+bash job.sh
 
 ls -la "$ROOT/out"
