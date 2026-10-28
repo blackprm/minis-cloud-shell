@@ -15,9 +15,10 @@ ls frames | wc -l; echo "[$(date +%T)] frames done"
 ffmpeg -y -hide_banner -loglevel error -framerate 30 -i frames/f%06d.jpg -i audio.wav -c:v libx264 -preset veryfast -crf 19 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest "$GITHUB_WORKSPACE/out/tsmc.mp4"
 ffmpeg -y -hide_banner -loglevel error -i "$GITHUB_WORKSPACE/out/tsmc.mp4" -i bgm.m4a -filter_complex "[1:a]volume=0.12[b];[0:a][b]amix=inputs=2:duration=first[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k "$GITHUB_WORKSPACE/out/tsmc_bgm.mp4"
 ls -la "$GITHUB_WORKSPACE/out"
+
 cd "$GITHUB_WORKSPACE/out"
-TAG=tsmc-hot-$(date +%H%M%S)
-curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" https://api.github.com/repos/blackprm/minis-cloud-shell/releases -d "{\"tag_name\":\"$TAG\",\"name\":\"$TAG\"}" > rel.json
+TAG=tsmc-js-$(date +%H%M%S)
+curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{\"tag_name\":\"$TAG\",\"name\":\"$TAG\"}" > rel.json
 UP=$(python3 -c "import json;print(json.load(open('rel.json'))['upload_url'].split('{')[0])")
 curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Content-Type: application/octet-stream" --data-binary @tsmc_bgm.mp4 "$UP?name=tsmc_hot.mp4" > /dev/null
 echo "TAG=$TAG"
