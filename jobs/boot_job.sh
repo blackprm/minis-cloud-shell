@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 cd "$GITHUB_WORKSPACE"
-mkdir -p pkg && cd pkg
+mkdir -p pkg out && cd pkg
 echo "[$(date +%T)] downloading pkg"
 curl -sL https://github.com/blackprm/minis-cloud-shell/releases/download/tsmc-pkg-1028/pkg.tgz -o pkg.tgz
 ls -la pkg.tgz
